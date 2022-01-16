@@ -103,9 +103,9 @@ def get_loaders_eval(dataset, root, distributed, batch_size, augment=True, drop_
         num_classes = 10
         train_transform, valid_transform = _data_transforms_mnist(binarize_binary_datasets)
         train_transform = train_transform if augment else valid_transform
-        train_data = dset.MNIST(
+        train_data = dset.FashionMNIST(
             root=root, train=True, download=True, transform=train_transform)
-        valid_data = dset.MNIST(
+        valid_data = dset.FashionMNIST(
             root=root, train=False, download=True, transform=valid_transform)
     elif dataset == 'fashion-mnist':
         num_classes = 10
