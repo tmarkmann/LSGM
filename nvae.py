@@ -20,7 +20,7 @@ class NVAE(nn.Module):
         super(NVAE, self).__init__()
         self.arch_instance = arch_instance
         self.dataset = args.dataset
-        self.crop_output = self.dataset in {'mnist', 'omniglot'}
+        self.crop_output = self.dataset in {'mnist', 'fashion-mnist', 'omniglot'}
         self.log_sig_q_scale = torch.Tensor([args.log_sig_q_scale]).cuda()
         self.num_bits = args.num_x_bits
         self.decoder_dist = args.decoder_dist
@@ -81,7 +81,7 @@ class NVAE(nn.Module):
 
     def init_stem(self):
         Cout = self.num_channels_enc
-        Cin = 1 if self.dataset in {'mnist', 'omniglot'} else 3
+        Cin = 1 if self.dataset in {'mnist', 'fashion-mnist', 'omniglot'} else 3
         stem = Conv2D(Cin, Cout, 3, padding=1, bias=True)
         return stem
 
