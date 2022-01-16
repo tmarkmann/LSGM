@@ -402,7 +402,7 @@ def broadcast_params(params, is_distributed):
 
 
 def num_output(dataset):
-    if dataset in {'mnist',  'omniglot'}:
+    if dataset in {'mnist', 'fashion-mnist', 'omniglot'}:
         return 28 * 28
     elif dataset == 'cifar10':
         return 3 * 32 * 32
@@ -416,7 +416,7 @@ def num_output(dataset):
 
 
 def get_input_size(dataset):
-    if dataset in {'mnist', 'omniglot'}:
+    if dataset in {'mnist', 'fashion-mnist', 'omniglot'}:
         return 32
     elif dataset == 'cifar10':
         return 32
@@ -444,7 +444,7 @@ def get_channel_multiplier(dataset, num_scales):
             mult = (1, 2, 2, 2)     # used for prior at 32
         elif num_scales == 5:
             mult = (1, 1, 2, 2, 2)  # used for prior at 64
-    elif dataset == 'mnist':
+    elif dataset in {'mnist', 'fashion-mnist'}:
         mult = (1, 1)
     else:
         raise NotImplementedError
@@ -458,7 +458,7 @@ def get_attention_scales(dataset):
     elif dataset in {'celeba_256', 'ffhq', 'lsun_church_256'}:
         # attn = (False, True, False, False) # used for 32
         attn = (False, False, True, False, False)  # used for 64
-    elif dataset == 'mnist':
+    elif dataset in {'mnist', 'fashion-mnist'}:
         attn = (True, False)
     else:
         raise NotImplementedError
@@ -734,7 +734,7 @@ def different_p_q_objectives(iw_sample_p, iw_sample_q):
 
 def decoder_output(dataset, logits, fixed_log_scales=None):
     if dataset in {'cifar10', 'celeba_64', 'celeba_256', 'imagenet_32', 'imagenet_64', 'ffhq',
-                   'lsun_bedroom_128', 'lsun_bedroom_256', 'mnist', 'omniglot',
+                   'lsun_bedroom_128', 'lsun_bedroom_256', 'mnist', 'fashion-mnist', 'omniglot',
                    'lsun_church_256'}:
         return PixelNormal(logits, fixed_log_scales)
     else:
