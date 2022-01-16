@@ -322,7 +322,7 @@ if __name__ == '__main__':
                         help='id used for storing intermediate results')
     # data
     parser.add_argument('--dataset', type=str, default='cifar10',
-                        choices=['cifar10', 'celeba_64', 'celeba_256', 'mnist', 'omniglot',
+                        choices=['cifar10', 'celeba_64', 'celeba_256', 'mnist', 'fashion-mnist', 'omniglot',
                                  'imagenet_32', 'ffhq', 'lsun_bedroom_128', 'lsun_church_256'],
                         help='which dataset to use')
     parser.add_argument('--data', type=str, default='/tmp/nvae-diff/data',
